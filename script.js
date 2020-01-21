@@ -1,6 +1,7 @@
 //consts
 const body = document.querySelector("body");
 const mymap = L.map("mapid").setView([51.505, -0.09], 13);
+let currentPolyline = null;
 
 // API
 // curl -X GET "https://www.strava.com/api/v3/athlete/activities?per_page=30" -H "accept: application/json" -H "authorization: Bearer 95d6ec555de69f80da67c5e8dd703f15d0c5b562"
@@ -26,9 +27,8 @@ L.tileLayer(
 
 //functions
 const renderMapFromPolylineString = polylineString => {
-  //     debugger
-    var encodedRoutes = [polylineString];
-
+  currentPolyline ? mymap.removeLayer(currentPolyline) : null;
+  var encodedRoutes = [polylineString];
   for (let encoded of encodedRoutes) {
     var coordinates = L.Polyline.fromEncoded(encoded).getLatLngs();
 
@@ -39,6 +39,7 @@ const renderMapFromPolylineString = polylineString => {
       lineJoin: "round"
     }).addTo(mymap);
     mymap.fitBounds(polyline.getBounds());
+    currentPolyline = polyline;
   }
 };
 
@@ -69,7 +70,6 @@ const renderActivityCard = activities => {
     });
 
   d3.selectAll("div").on("click", d => {
-    // debugger;
     renderMapFromPolylineString(d.map.summary_polyline);
   });
 };
