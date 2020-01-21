@@ -49,6 +49,8 @@ const renderActivityCard = activities => {
     .data(activities)
     .enter()
     .append("div")
+    .attr("class", "chart-bar")
+    .on("mouseover", mouseOver)
     .style("width", "0")
     .transition()
     .duration(2000)
@@ -73,7 +75,20 @@ const renderActivityCard = activities => {
     renderMapFromPolylineString(d.map.summary_polyline);
   });
 };
+function mouseOver(d) {
+  d3.select(d)
+    .append("text")
 
+    .attr("x", function() {
+      return y(d.y);
+    })
+    .attr("dx", "6") // margin
+    .attr("dy", ".35em") // vertical-align
+    .attr("class", "mylabel") //adding a label class
+    .text(function() {
+      return d.start_date;
+    });
+}
 const init = () => {
   get();
 };
