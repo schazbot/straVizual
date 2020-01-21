@@ -998,15 +998,6 @@ const activities = [
   }
 ];
 
-// API
-// curl -X GET "https://www.strava.com/api/v3/athlete/activities?per_page=30" -H "accept: application/json" -H "authorization: Bearer 95d6ec555de69f80da67c5e8dd703f15d0c5b562"
-
-// const get = () => {
-//   return fetch("http://localhost:3000/rides")
-//     .then(resp => resp.json())
-//     .then(activities => renderActivityCard(activities));
-// };
-
 //leaflet stuff
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -1095,11 +1086,7 @@ function mouseOver(d) {
     .attr("class", "label") //adding a label class
     .text(d.start_date);
 }
-// const init = () => {
-//     get();
 
-// };
 
 renderActivityCard();
 
-// init();
