@@ -8,10 +8,7 @@ const mymap = L.map("mapid").setView([51.505, -0.09], 13);
 const get = () => {
   return fetch("http://localhost:3000/rides")
     .then(resp => resp.json())
-    .then(activities => {
-      const activityList = activities.map(activity => activity.distance / 1000);
-      renderActivityCard(activityList);
-    });
+    .then(activities => renderActivityCard(activities));
 };
 
 //leaflet stuff
@@ -45,34 +42,35 @@ for (let encoded of encodedRoutes) {
   mymap.fitBounds(polyline.getBounds());
 }
 
-const renderActivityCard = activityList => {
+const renderActivityCard = activities => {
   d3.select(".chart")
     .selectAll("div")
-    .on("mouseover", d => console.log(d))
-    .data(activityList)
+    .data(activities)
     .enter()
     .append("div")
     .style("width", "0")
     .transition()
     .duration(2000)
     .style("width", function(d) {
-      return d * 10 + "px";
+      return (d.distance/1000) * 10 + "px";
     })
     .style("background-color", function(d) {
-      if (d <= 20) {
+      if (d.distance / 1000 <= 20) {
         return "aquamarine";
-      } else if (d >= 20 && d <= 50) {
+      } else if (d.distance / 1000 >= 20 && d.distance / 1000 <= 50) {
         return "darkturquoise";
-      } else if (d >= 50) {
+      } else if (d.distance / 1000 >= 50) {
         return "darkcyan";
       }
     })
-    .text(function(d) {
-      return `${d.toFixed(1)}km`;
+      .text(function (d) {
+        let formattedDistance = (d.distance/1000).toFixed(1)
+      return `${formattedDistance}km`;
     });
 
-    d3.selectAll("div")
-    .on("click", function(d, i) { console.log(d); });
+  d3.selectAll("div").on("click", function(d, i) {
+    console.log(d);
+  });
 };
 
 const init = () => {
