@@ -44,13 +44,33 @@ const renderMapFromPolylineString = polylineString => {
 };
 
 const renderActivityCard = activities => {
+  const tooltip = d3
+    .select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Date:");
+
   d3.select(".chart")
     .selectAll("div")
     .data(activities)
     .enter()
     .append("div")
     .attr("class", "chart-bar")
-    .on("mouseover", mouseOver)
+    .on("mouseover", d => {
+      tooltip.text(`Date: ${d.start_date}`);
+      return tooltip.style("visibility", "visible");
+    })
+    .on("mousemove", () => {
+      return tooltip
+        .style("top", event.pageY - 10 + "px")
+        .style("left", event.pageX + 10 + "px");
+    })
+    .on("mouseout", () => {
+      return tooltip.style("visibility", "hidden");
+    })
+    // .on("mouseover", mouseOver)
     .style("width", "0")
     .transition()
     .duration(2000)
@@ -66,7 +86,7 @@ const renderActivityCard = activities => {
         return "darkcyan";
       }
     })
-    .text(function(d) {
+    .text(d => {
       let formattedDistance = (d.distance / 1000).toFixed(1);
       return `${formattedDistance}km`;
     });
@@ -78,16 +98,8 @@ const renderActivityCard = activities => {
 function mouseOver(d) {
   d3.select(d)
     .append("text")
-
-    .attr("x", function() {
-      return y(d.y);
-    })
-    .attr("dx", "6") // margin
-    .attr("dy", ".35em") // vertical-align
-    .attr("class", "mylabel") //adding a label class
-    .text(function() {
-      return d.start_date;
-    });
+    .attr("class", "label") //adding a label class
+    .text(d.start_date);
 }
 const init = () => {
   get();
