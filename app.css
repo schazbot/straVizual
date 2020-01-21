@@ -1,8 +1,25 @@
 body {
   font-family: "Quicksand", sans-serif;
+  display: grid;
+}
+#pageHeader{
+    grid-row-start:  1 ;
+}
+
+.data-container {
+  /* display: grid; */
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+}
+
+.chart {
+  grid-row-start: 2;
+  grid-column-start: 2;
 }
 
 #mapid {
   height: 600px;
   width: 600px;
+  border: 1px solid black;
+  grid-row-start: 2;
 }
