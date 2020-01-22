@@ -2,8 +2,8 @@ body {
   font-family: "Quicksand", sans-serif;
   display: grid;
 }
-#pageHeader{
-    grid-row-start:  1 ;
+#pageHeader {
+  grid-row-start: 1;
 }
 
 .data-container {
@@ -22,4 +22,12 @@ body {
   width: 600px;
   border: 1px solid black;
   grid-row-start: 2;
+}
+
+.chart-bar {
+  margin: 10px;
+}
+
+.tooltip {
+  background-color: thistle;
 }

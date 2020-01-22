@@ -1029,10 +1029,19 @@ const renderMapFromPolylineString = polylineString => {
   }
 };
 
+const startDateFormat = activity => {
+  let stDt = activity.start_date;
+  let formatted = [];
+  const dateArr = stDt.split(/\D+/g);
+    formatted.push(dateArr[0], dateArr[1], dateArr[2]);
+    return formatted.reverse().join("/")
+};
+
 const renderActivityCard = () => {
   const tooltip = d3
     .select("body")
     .append("div")
+    .attr("class", "tooltip")
     .style("position", "absolute")
     .style("z-index", "10")
     .style("visibility", "hidden")
@@ -1045,7 +1054,7 @@ const renderActivityCard = () => {
     .append("div")
     .attr("class", "chart-bar")
     .on("mouseover", d => {
-      tooltip.text(`Date: ${d.start_date}`);
+      tooltip.text(startDateFormat(d));
       return tooltip.style("visibility", "visible");
     })
     .on("mousemove", () => {
@@ -1087,6 +1096,4 @@ function mouseOver(d) {
     .text(d.start_date);
 }
 
-
 renderActivityCard();
-
