@@ -2,12 +2,33 @@ body {
   font-family: "Quicksand", sans-serif;
   display: grid;
 }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+p {
+  color: rgb(0, 141, 178);
+}
+
+.header {
+  display: flex;
+}
 #pageHeader {
-  grid-row-start: 1;
+  color: rgb(0, 141, 178);
+  padding: 1em;
+  padding-left: 2em;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+#bike-svg {
+  max-height: 20%;
 }
 
 .data-container {
-  /* display: grid; */
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
 }
@@ -18,16 +39,34 @@ body {
 }
 
 #mapid {
-  height: 600px;
-  width: 600px;
-  border: 1px solid black;
+  margin: auto;
+  height: 450px;
+  width: 450px;
+  border: 1px solid rgb(0, 141, 178);
   grid-row-start: 2;
 }
 
 .chart-bar {
-  margin: 10px;
+  margin: 1%;
 }
 
 .tooltip {
-  background-color: thistle;
+  background-color: rgb(247, 207, 82);
+}
+
+@media only screen and (max-width: 600px) {
+  p {
+    color: rgb(0, 141, 178);
+    margin: 10px;
+    font-size: x-large;
+  }
+
+
+  .chart {
+    grid-column-start: 1;
+  }
+
+  #mapid {
+    grid-row-start: 3;
+  }
 }

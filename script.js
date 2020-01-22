@@ -1033,8 +1033,8 @@ const startDateFormat = activity => {
   let stDt = activity.start_date;
   let formatted = [];
   const dateArr = stDt.split(/\D+/g);
-    formatted.push(dateArr[0], dateArr[1], dateArr[2]);
-    return formatted.reverse().join("/")
+  formatted.push(dateArr[0], dateArr[1], dateArr[2]);
+  return formatted.reverse().join("/");
 };
 
 const renderActivityCard = () => {
@@ -1073,11 +1073,11 @@ const renderActivityCard = () => {
     })
     .style("background-color", function(d) {
       if (d.distance / 1000 <= 20) {
-        return "aquamarine";
+        return "rgb(185, 222, 240)";
       } else if (d.distance / 1000 >= 20 && d.distance / 1000 <= 50) {
-        return "darkturquoise";
+        return "rgb(122, 208, 250)";
       } else if (d.distance / 1000 >= 50) {
-        return "darkcyan";
+        return "rgb(0, 141, 178)";
       }
     })
     .text(d => {
@@ -1089,11 +1089,14 @@ const renderActivityCard = () => {
     renderMapFromPolylineString(d.map.summary_polyline);
   });
 };
+
 function mouseOver(d) {
   d3.select(d)
     .append("text")
     .attr("class", "label") //adding a label class
     .text(d.start_date);
 }
+
+gsap.to("#bike-svg", { duration: 2, x: "400px" });
 
 renderActivityCard();
