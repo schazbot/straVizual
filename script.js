@@ -1086,9 +1086,14 @@ const renderActivityCard = () => {
     });
 
   d3.selectAll("div").on("click", d => {
-    renderMapFromPolylineString(d.map.summary_polyline);
+      renderMapFromPolylineString(d.map.summary_polyline);
   });
 };
+
+const showActivityDetails = (activity) => { 
+    const div = document.createElement('div')
+    
+}
 
 function mouseOver(d) {
   d3.select(d)
