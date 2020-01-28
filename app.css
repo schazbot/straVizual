@@ -1,6 +1,6 @@
 body {
   font-family: "Quicksand", sans-serif;
-  display: grid;
+  display: block;
 }
 body,
 html {
@@ -13,9 +13,14 @@ p {
   color: rgb(0, 141, 178);
 }
 
-.header {
+nav {
+  position: fixed;
+  z-index: 10;
   display: flex;
+  width: 100%;
+  background-color: white;
 }
+
 #pageHeader {
   color: rgb(0, 141, 178);
   padding: 1em;
@@ -28,22 +33,37 @@ p {
   max-height: 20%;
 }
 
-.data-container {
-  grid-template-columns: 50% 50%;
+.app-container {
+  display: grid;
   grid-template-rows: 50% 50%;
 }
 
+.data-container {
+  padding-top: 10em;
+  width: 100vw;
+  /* height: 100vh; Your DIVs Height */
+  z-index: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition: -webkit-transform 0.6s ease-in-out;
+  transition: transform 0.6s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* display: flex;
+  flex-direction: row-reverse; */
+}
+
 .chart {
-  grid-row-start: 2;
-  grid-column-start: 2;
+  /* grid-row-start: 2;
+  grid-column-start: 2; */
 }
 
 #mapid {
   margin: auto;
   height: 450px;
-  width: 450px;
+  width: 500px;
   border: 1px solid rgb(0, 141, 178);
-  grid-row-start: 2;
+  /* grid-row-start: 2; */
 }
 
 .chart-bar {
@@ -55,18 +75,24 @@ p {
 }
 
 @media only screen and (max-width: 600px) {
+  nav {
+    position: fixed;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    background-color: white;
+  }
   p {
     color: rgb(0, 141, 178);
     margin: 10px;
     font-size: x-large;
   }
 
-
-  .chart {
+  .data-container {
     grid-column-start: 1;
   }
 
   #mapid {
-    grid-row-start: 3;
+    /* grid-row-start: 3; */
   }
 }

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>straVizual</title>
     <link rel="stylesheet" href="./app.css" />
@@ -24,17 +25,31 @@
     ></script>
   </head>
   <body>
-    <div class ="header">
+    <nav class ="header">
     <h1 id="pageHeader">straVizual</h1>
     <img id="bike-svg"src="./bicycle-svgrepo-com.svg" alt="a colourful vector drawing of a road bicycle">
-  </div>
-    <div class="data-container flex-direction"></div>
+    <ul>
+      <li><a href="#container-1">Map</a> </li>
+      <li><a href="#container-2">Stats</a> </li>
+      <li><a href="#container-3">More Stats</a> </li>
+    </ul>
+    </nav>
+    <div class="app container">
+    <div class="data-container" id="container-1">
       <div class="chart">
         <p>Click on a bar to see your route<p>
       </div>
+      <div id="mapid">
 
-      <div id="mapid"></div>
+      </div>
     </div>
+    <div class="data-container" id="container-2">
+      <h1>container2</h1>   
+    </div>
+    <div class="data-container" id="container-3">
+      <h1>container3</h1>   
+    </div>
+  </div>
   </body>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script src="./script.js"></script>
