@@ -15,6 +15,7 @@
       rel="stylesheet"
       href="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet.css"
     />
+    <script rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.0.5/gsap.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet.js"></script>
 
     <script
@@ -23,9 +24,14 @@
     ></script>
   </head>
   <body>
-    <h1 id="pageHeader">My Rides</h1>
+    <div class ="header">
+    <h1 id="pageHeader">straVizual</h1>
+    <img id="bike-svg"src="./bicycle-svgrepo-com.svg" alt="a colourful vector drawing of a road bicycle">
+  </div>
     <div class="data-container flex-direction"></div>
-      <div class="chart"></div>
+      <div class="chart">
+        <p>Click on a bar to see your route<p>
+      </div>
 
       <div id="mapid"></div>
     </div>
